@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLT-7749-NEBULA • Technical Seed • StarBoltSprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --cosmic-purple: #7C3AED;
+            --cosmic-green: #10B981;
+            --cosmic-dark: #0F0F23;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .cosmic-bg {
+            background: radial-gradient(circle at center, #1a1a3a 0%, #0F0F23 70%);
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, #1a1a3a, #0F0F23);
+            border-left: 4px solid #7C3AED;
+        }
+
+        .code-block {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            background: #111827;
+            border: 1px solid #374151;
+        }
+
+        .bolt-glow {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.open {
+            max-height: 2000px;
+        }
+
+        .metric-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .parameter-row:hover {
+            background-color: #1F2937;
+        }
+    </style>
+</head>
+<body class="bg-[#0F0F23] text-white cosmic-bg">
+    <!-- Header -->
+    <div class="border-b border-white/10 bg-black/40 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-4">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-violet-500 to-emerald-400 flex items-center justify-center bolt-glow">
+                    <i class="fa-solid fa-bolt-lightning text-white text-3xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-x-3">
+                        <h1 class="font-display text-3xl tracking-tighter">BOLT-7749-NEBULA</h1>
+                        <div class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium flex items-center gap-x-1.5 border border-emerald-500/20">
+                            <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                            v0.8 LIVE
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm -mt-1">Hybrid PCG + Grok AI Procedural Seed • StarBoltSprint</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-3">
+                <button onclick="copyFullJSON()" 
+                        class="flex items-center gap-x-2 px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Copy Full JSON</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pt-10 pb-20">
+        
+        <!-- Hero + Quick Stats -->
+        <div class="flex flex-col lg:flex-row gap-8 items-start mb-12">
+            <div class="flex-1">
+                <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 border border-white/10 text-sm mb-4">
+                    <i class="fa-solid fa-globe text-emerald-400"></i>
+                    <span class="font-medium">Official Shared Seed • Deterministic</span>
+                </div>
+                
+                <h2 class="font-display text-6xl tracking-tighter leading-none mb-4">
+                    Crystal Nebula Plains<br>
+                    <span class="bg-gradient-to-r from-violet-400 to-emerald-400 bg-clip-text text-transparent">with Ember Intrusions</span>
+                </h2>
+                
+                <p class="max-w-xl text-xl text-white/70">
+                    A living, Grok-powered procedural cosmos designed for high-momentum sprinting, 
+                    dynamic flux events, and community-shaped evolution.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 w-full lg:w-auto">
+                <div class="metric-card bg-white/5 border border-white/10 rounded-3xl p-5">
+                    <div class="text-emerald-400 text-xs tracking-[1px] font-medium mb-1">DIFFICULTY</div>
+                    <div class="text-4xl font-semibold">MEDIUM-HIGH</div>
+                </div>
+                <div class="metric-card bg-white/5 border border-white/10 rounded-3xl p-5">
+                    <div class="text-emerald-400 text-xs tracking-[1px] font-medium mb-1">TARGET RUN TIME</div>
+                    <div class="text-4xl font-semibold">4–7 <span class="text-2xl align-super">min</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biome Breakdown -->
+        <div class="mb-12">
+            <div class="flex items-center justify-between mb-4 px-1">
+                <span class="font-semibold text-lg">Biome Distribution</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Crystal -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="font-semibold text-xl">Crystal Nebula Plains</div>
+                            <div class="text-emerald-400 text-sm">65% dominant</div>
+                        </div>
+                        <div class="text-4xl font-bold text-emerald-400">65</div>
+                    </div>
+                    <div class="h-2 bg-white/10 rounded-full overflow-hidden mb-4">
+                        <div class="h-2 bg-emerald-400 rounded-full" style="width: 65%"></div>
+                    </div>
+                </div>
+
+                <!-- Ember -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="font-semibold text-xl">Ember Void</div>
+                            <div class="text-orange-400 text-sm">25% intrusions</div>
+                        </div>
+                        <div class="text-4xl font-bold text-orange-400">25</div>
+                    </div>
+                    <div class="h-2 bg-white/10 rounded-full overflow-hidden mb-4">
+                        <div class="h-2 bg-orange-400 rounded-full" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <!-- Starfields -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="font-semibold text-xl">Whispering Starfields</div>
+                            <div class="text-sky-400 text-sm">10% pockets</div>
+                        </div>
+                        <div class="text-4xl font-bold text-sky-400">10</div>
+                    </div>
+                    <div class="h-2 bg-white/10 rounded-full overflow-hidden mb-4">
+                        <div class="h-2 bg-sky-400 rounded-full" style="width: 10%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== LIVE PARAMETER EDITOR ========== -->
+        <div class="mb-16">
+            <div class="flex items-center gap-x-3 mb-6 px-1">
+                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-violet-500 to-emerald-400 flex items-center justify-center">
+                    <i class="fa-solid fa-sliders-h text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-display text-3xl tracking-tight">Live Parameter Editor</h3>
+                    <p class="text-white/60 text-sm -mt-1">Adjust values and watch the simulated world update in real time</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+                
+                <!-- Controls -->
+                <div class="xl:col-span-3 bg-[#111827] border border-white/10 rounded-3xl p-7">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+                        
+                        <!-- Perlin Frequency -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="font-medium">Perlin Frequency</div>
+                                <div id="freq-value" class="font-mono text-emerald-400 font-semibold">0.80</div>
+                            </div>
+                            <input type="range" id="freq-slider" min="0.3" max="2.0" step="0.05" value="0.8"
+                                   class="w-full accent-violet-500" oninput="updateLivePreview()">
+                        </div>
+
+                        <!-- Base Gravity -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="font-medium">Base Gravity</div>
+                                <div id="gravity-value" class="font-mono text-emerald-400 font-semibold">0.65×</div>
+                            </div>
+                            <input type="range" id="gravity-slider" min="0.3" max="1.5" step="0.05" value="0.65"
+                                   class="w-full accent-emerald-500" oninput="updateLivePreview()">
+                        </div>
+
+                        <!-- Flux Interval -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="font-medium">Nebula Flux Interval</div>
+                                <div id="flux-value" class="font-mono text-emerald-400 font-semibold">67s</div>
+                            </div>
+                            <input type="range" id="flux-slider" min="30" max="120" step="5" value="67"
+                                   class="w-full accent-violet-500" oninput="updateLivePreview()">
+                        </div>
+
+                        <!-- Max Particles -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="font-medium">Max GPU Particles</div>
+                                <div id="particles-value" class="font-mono text-emerald-400 font-semibold">250k</div>
+                            </div>
+                            <input type="range" id="particles-slider" min="50000" max="500000" step="10000" value="250000"
+                                   class="w-full accent-emerald-500" oninput="updateLivePreview()">
+                        </div>
+                    </div>
+
+                    <!-- Biome Weight Sliders -->
+                    <div class="mt-8 pt-7 border-t border-white/10">
+                        <div class="font-medium mb-4">Biome Weights (auto-normalized to 100%)</div>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-emerald-400">Crystal Nebula Plains</span>
+                                    <span id="crystal-weight" class="font-mono font-semibold">65%</span>
+                                </div>
+                                <input type="range" id="crystal-slider" min="0" max="100" step="1" value="65"
+                                       class="w-full accent-emerald-500" oninput="updateBiomeWeights()">
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-orange-400">Ember Void</span>
+                                    <span id="ember-weight" class="font-mono font-semibold">25%</span>
+                                </div>
+                                <input type="range" id="ember-slider" min="0" max="100" step="1" value="25"
+                                       class="w-full accent-orange-500" oninput="updateBiomeWeights()">
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-sky-400">Whispering Starfields</span>
+                                    <span id="star-weight" class="font-mono font-semibold">10%</span>
+                                </div>
+                                <input type="range" id="star-slider" min="0" max="100" step="1" value="10"
+                                       class="w-full accent-sky-500" oninput="updateBiomeWeights()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Preview Panel -->
+                <div class="xl:col-span-2 bg-[#111827] border border-white/10 rounded-3xl p-7 flex flex-col">
+                    <div class="font-semibold mb-4 flex items-center gap-x-2">
+                        <i class="fa-solid fa-eye text-violet-400"></i>
+                        <span>Live Simulation Preview</span>
+                    </div>
+
+                    <!-- Dynamic Biome Bars -->
+                    <div class="mb-6">
+                        <div class="text-xs text-white/50 mb-2">CURRENT BIOME MIX</div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-emerald-400">Crystal Nebula Plains</span>
+                                    <span id="preview-crystal" class="font-mono">65%</span>
+                                </div>
+                                <div class="h-2.5 bg-white/10 rounded-full overflow-hidden">
+                                    <div id="bar-crystal" class="h-2.5 bg-emerald-400 rounded-full transition-all duration-300" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-orange-400">Ember Void</span>
+                                    <span id="preview-ember" class="font-mono">25%</span>
+                                </div>
+                                <div class="h-2.5 bg-white/10 rounded-full overflow-hidden">
+                                    <div id="bar-ember" class="h-2.5 bg-orange-400 rounded-full transition-all duration-300" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-sky-400">Whispering Starfields</span>
+                                    <span id="preview-star" class="font-mono">10%</span>
+                                </div>
+                                <div class="h-2.5 bg-white/10 rounded-full overflow-hidden">
+                                    <div id="bar-star" class="h-2.5 bg-sky-400 rounded-full transition-all duration-300" style="width: 10%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulated Stats -->
+                    <div class="flex-1">
+                        <div class="text-xs text-white/50 mb-3">SIMULATED WORLD STATS</div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-white/5 rounded-2xl p-4">
+                                <div class="text-xs text-white/50">Avg Sprint Momentum</div>
+                                <div id="stat-momentum" class="text-3xl font-semibold text-emerald-400 mt-1">87</div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-2xl p-4">
+                                <div class="text-xs text-white/50">Flux Drama Level</div>
+                                <div id="stat-flux" class="text-3xl font-semibold text-violet-400 mt-1">Medium</div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-2xl p-4">
+                                <div class="text-xs text-white/50">Visual Density</div>
+                                <div id="stat-density" class="text-3xl font-semibold text-sky-400 mt-1">High</div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-2xl p-4">
+                                <div class="text-xs text-white/50">Replayability Score</div>
+                                <div id="stat-replay" class="text-3xl font-semibold text-emerald-400 mt-1">94</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- ========== END LIVE PARAMETER EDITOR ========== -->
+
+        <!-- Full JSON -->
+        <div class="mt-12">
+            <div class="flex items-center justify-between mb-4 px-1">
+                <div class="font-semibold text-lg">Full Technical JSON Definition</div>
+                <button onclick="copyFullJSON()" 
+                        class="text-sm flex items-center gap-x-2 px-4 py-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Copy Entire JSON</span>
+                </button>
+            </div>
+            
+            <div class="code-block rounded-3xl p-6 text-sm overflow-auto max-h-[520px] border border-white/10">
+                <pre class="syntax-json text-white/90"><code id="full-json">{
+  "seedId": "BOLT-7749-NEBULA",
+  "version": "0.8",
+  ... 
+  (full JSON as previously shared)
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function copyFullJSON() {
+            const jsonText = document.getElementById('full-json').innerText;
+            navigator.clipboard.writeText(jsonText).then(() => {
+                alert("Full JSON copied!");
+            });
+        }
+
+        function updateLivePreview() {
+            const freq = parseFloat(document.getElementById('freq-slider').value);
+            const gravity = parseFloat(document.getElementById('gravity-slider').value);
+            const fluxInterval = parseInt(document.getElementById('flux-slider').value);
+            const particles = parseInt(document.getElementById('particles-slider').value);
+
+            document.getElementById('freq-value').textContent = freq.toFixed(2);
+            document.getElementById('gravity-value').textContent = gravity.toFixed(2) + '×';
+            document.getElementById('flux-value').textContent = fluxInterval + 's';
+            document.getElementById('particles-value').textContent = Math.round(particles / 1000) + 'k';
+
+            const momentum = Math.round(70 + (1.5 - gravity) * 25 + (freq - 0.5) * 10);
+            document.getElementById('stat-momentum').textContent = Math.max(60, Math.min(98, momentum));
+
+            let fluxDrama = "Low";
+            if (fluxInterval < 50) fluxDrama = "High";
+            else if (fluxInterval < 75) fluxDrama = "Medium";
+            document.getElementById('stat-flux').textContent = fluxDrama;
+
+            let density = "Medium";
+            if (particles > 350000) density = "Very High";
+            else if (particles > 200000) density = "High";
+            else if (particles < 100000) density = "Low";
+            document.getElementById('stat-density').textContent = density;
+        }
+
+        function updateBiomeWeights() {
+            // Auto-normalize biome weights
+            let crystal = parseInt(document.getElementById('crystal-slider').value);
+            let ember = parseInt(document.getElementById('ember-slider').value);
+            let star = parseInt(document.getElementById('star-slider').value);
+
+            const total = crystal + ember + star;
+            if (total > 0) {
+                crystal = Math.round((crystal / total) * 100);
+                ember = Math.round((ember / total) * 100);
+                star = 100 - crystal - ember;
+            }
+
+            document.getElementById('crystal-weight').textContent = crystal + '%';
+            document.getElementById('ember-weight').textContent = ember + '%';
+            document.getElementById('star-weight').textContent = star + '%';
+
+            document.getElementById('preview-crystal').textContent = crystal + '%';
+            document.getElementById('preview-ember').textContent = ember + '%';
+            document.getElementById('preview-star').textContent = star + '%';
+
+            document.getElementById('bar-crystal').style.width = crystal + '%';
+            document.getElementById('bar-ember').style.width = ember + '%';
+            document.getElementById('bar-star').style.width = star + '%';
+
+            updateLivePreview();
+        }
+
+        function initLiveEditor() {
+            updateBiomeWeights();
+            updateLivePreview();
+        }
+
+        window.addEventListener('load', initLiveEditor);
+    </script>
+</body>
+</html>
